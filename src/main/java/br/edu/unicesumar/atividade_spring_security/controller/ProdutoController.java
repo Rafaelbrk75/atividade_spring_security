@@ -6,20 +6,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/produtos")
+@RestController //Usado para retornar um JSON automaticamente
+@RequestMapping("/produtos") //Usado para definir a rota
 public class ProdutoController {
 
-    @Autowired
+    @Autowired //Permite a injeção de classes
     private ProdutoService produtoService;
 
-    @GetMapping
+    @GetMapping//Usado para buscar/listar
     public List<ProdutoModel> listarProdutos(){
-        produtoService.listAll();
+
+        return produtoService.listAll();
     }
 
-    @PostMapping
+    @PostMapping//Serve para criação de recursos
     public ProdutoModel criar(ProdutoModel produto){
-        produtoService.save(produto);
+
+        return produtoService.save(produto);
     }
 }

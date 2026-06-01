@@ -11,25 +11,20 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+@Configuration //Indica que a classe é uma classe de configuração do Spring.
 public class SecurityConfig {
 
-    @Bean
+    @Bean //Informa ao Spring que o metodo retorna um objeto que deve ser gerenciado pelo container.
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
-
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers(HttpMethod.GET, "/produtos").permitAll()
-
                         .requestMatchers(HttpMethod.POST, "/produtos").permitAll()
-
                         .anyRequest().authenticated()
                 );
 
